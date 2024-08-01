@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="homepage">
+    <div class="image-grid">
+        <img src="{% static 'img/movie.jpg' %}" alt="Movie Image" class="hero-image">
+        <img src="{% static 'img/movie1.jpg' %}" alt="Movie Image" class="hero-image">
+        <img src="{% static 'img/movie2.jpg' %}" alt="Movie Image" class="hero-image">
+        <img src="{% static 'img/movie3.jpg' %}" alt="Movie Image" class="hero-image">
+        <img src="{% static 'img/movie4.jpg' %}" alt="Movie Image" class="hero-image">
+        <img src="{% static 'img/movie5.jpg' %}" alt="Movie Image" class="hero-image">
+    </div>
+</div>
+<style>
+    .homepage {
+        padding: 50px;
+        background: linear-gradient(to right, #f9f9f9, #e0e0e0);
+        color: #333;
+    }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .hero-image {
+        width: 400px;
+        height: 500px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+{% endblock %}

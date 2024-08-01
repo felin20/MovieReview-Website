@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reviews</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        /* General styling for body and html to ensure full height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        /* Flexbox layout for body */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container styling */
+        .container {
+            flex: 1; /* Makes the container take up the available space */
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            background: #f0f0f0;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .no-reviews {
+            text-align: center;
+            color: #666;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<header>
+    {% include 'header/head.html' %}
+</header>
+<body>
+    <div class="container">
+        <h2>My Reviews</h2>
+        {% if user_reviews %}
+            <ul>
+                {% for review in user_reviews %}
+                    <li>
+                        {% if review.pic %}
+                            <img src="{{ review.pic.url }}" alt="Review Picture" />
+                        {% endif %}
+                        <div>
+                            <p><strong>{{ review.Username }}</strong></p>
+                            <p>Rating: {{ review.Rating }}</p>
+                            <p>{{ review.Review }}</p>
+                        </div>
+                        <div>
+                            <a href="{% url 'edit_review' id=review.id %}">Edit</a>
+                            <a href="{% url 'delete_review' id=review.id %}">Delete</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-reviews">No reviews found.</p>
+        {% endif %}
+    </div>
+    {% include 'footer/foot.html' %}
+</body>
+</html>

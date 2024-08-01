@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        .review-image {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .action-buttons {
+            margin-top: 10px;
+        }
+
+        .action-buttons a, .action-buttons button {
+            margin-right: 10px;
+            padding: 8px 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-buttons a {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .action-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        .action-buttons button {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+        }
+
+        .action-buttons button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<header>
+  {%include 'header/head.html'%}
+</header>
+<body>
+    <h1>Reviews</h1>
+    <ul>
+      {% for review in reviews %}
+      <li>
+        <strong>Movie:</strong> {{ review.movie.mname }}<br />
+        <strong>Review:</strong> {{ review.review }}<br />
+        <strong>Rating:</strong> {{ review.rating }}<br />
+        <strong>Picture:</strong><br />
+        {% if review.picture %}
+          <img src="{{ review.picture.url }}" alt="Review Picture" class="review-image"><br />
+        {% endif %}
+        <strong>Profile:</strong> {{ review.profile.user.username }}<br />
+        <div class="action-buttons">
+            <a href="{% url 'edit_review' review.id %}">Edit</a>
+            <form action="{% url 'delete_review' review.id %}" method="post" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit">Delete</button>
+            </form>
+        </div>
+      </li>
+      {% empty %}
+      <li>No reviews available.</li>
+      {% endfor %}
+    </ul>
+</body>
+<footer>
+  {%include 'footer/foot.html'%}
+
+</footer>
+</html>

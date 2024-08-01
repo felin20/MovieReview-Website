@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie List</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <style>
+        /* Main container styling */
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container1 {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 300px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .container1:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .img1 {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .text1 {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .text1 a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .text1 a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>{% include 'header/head.html' %}</header>
+    <div class="content">
+        {% for Movie in mov %}
+            <div class="container1">
+                <a href="{% url 'det' Movie.Moviename %}">
+                    <img class="img1" src="{{ Movie.movimg.url }}" alt="{{ movie.Moviename }}" />
+                    <p class="text1">{{ Movie.Moviename }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'footer/foot.html' %}
+</body>
+</html>

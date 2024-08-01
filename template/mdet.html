@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ det.Moviename }} - Movie Details</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header, footer {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .movie-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .movie-title {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .container1, .container2 {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .container1 p, .container2 p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .text11 {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .container2 ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .container2 li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .container2 img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 15px;
+        }
+
+        footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>{% include 'header/head.html' %}</header>
+    <div class="content">
+        <p class="movie-title">{{ det.Moviename }}</p>
+        <img src="{{ det.movimg.url }}" alt="{{ det.Moviename }}" class="movie-image" />
+        <div class="container1">
+            <p class="text11">Released Year:</p>
+            <p>{{ det.year }}</p>
+            <p class="text11">Box Office Numbers:</p>
+            <p>{{ det.bo }}</p>
+            <p class="text11">Fate of the Movie:</p>
+            <p>{{ det.fate }}</p>
+            <p class="text11">Director:</p>
+            <p>{{ det.director }}</p>
+            <p class="text11">Producer:</p>
+            <p>{{ det.producer }}</p>
+            <p class="text11">Cast:</p>
+            <p>{{ det.cast }}</p>
+            <p class="text11">Rating:</p>
+            <p>{{ det.rating }}</p>
+            <p class="text11">Synopsis:</p>
+            <p>{{ det.synopsis }}</p>
+        </div>
+        <div class="container2">
+            <h2>User Reviews</h2>
+            {% if urev %}
+                <ul>
+                    {% for review in urev %}
+                        <li>
+                            {% if review.pic %}
+                                <img src="{{ review.pic.url }}" alt="Review Picture" />
+                            {% endif %}
+                            <div>
+                                <p><strong>{{ review.Username }}</strong></p>
+                                <p>Rating: {{ review.Rating }}</p>
+                                <p>{{ review.Review }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    <footer>{% include 'footer/foot.html' %}</footer>
+</body>
+</html>

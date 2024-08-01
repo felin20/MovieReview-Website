@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% block content %}
+<h1 style="text-align: center; margin-top: 50px">Register</h1>
+<form method="post" class="register-form">
+  {% csrf_token %}
+
+  <div class="form-group">{{ form.non_field_errors }}</div>
+
+  <div class="form-group">
+    {{ form.username.label_tag }} {{ form.username }} {{ form.username.errors }}
+  </div>
+
+  <div class="form-group">
+    {{ form.email.label_tag }} {{ form.email }} {{ form.email.errors }}
+  </div>
+
+  <div class="form-group">
+    {{ form.password1.label_tag }} {{ form.password1 }} {{ form.password1.errors}}
+  </div>
+
+  <div class="form-group">
+    {{ form.password2.label_tag }} {{ form.password2 }} {{ form.password2.errors}}
+  </div>
+
+  <div class="form-group">
+    <input type="submit" value="Register" class="btn btn-primary" />
+  </div>
+</form>
+
+<style>
+  footer {
+    position: relative;
+    top: 100px;
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .form-group input.error,
+  .form-group select.error,
+  .form-group textarea.error {
+    border-color: red;
+  }
+
+  .errorlist {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
+{% endblock %}

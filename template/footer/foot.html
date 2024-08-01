@@ -1,0 +1,135 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+<body>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>About</h2>
+                <p>
+                    Welcome to MovieReviews, your go-to place for honest and detailed movie reviews. Our mission is to provide movie enthusiasts with reviews that help them make informed viewing choices.
+                </p>
+            </div>
+            <div class="footer-section links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'movlist' %}">Movies</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'myrev' %}">Reviews</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'reg' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h2>Follow Us</h2>
+                <p>Stay connected through our social media channels:</p>
+                <div class="social-links">
+                    <a href="#"><img src="{% static 'images/facebook.png' %}" alt="Facebook"></a>
+                    <a href="#"><img src="{% static 'images/twitter.png' %}" alt="Twitter"></a>
+                    <a href="#"><img src="{% static 'images/instagram.png' %}" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MovieReviews | Designed by Felin</p>
+        </div>
+    </footer>
+</body>
+</html>
+<style>
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 10px 20px;
+}
+
+.footer-section h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #555;
+    padding-bottom: 5px;
+}
+
+.footer-section p {
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1); /* Makes icons white */
+}
+
+.footer-bottom {
+    background-color: #222;
+    color: #bbb;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9em;
+}
+</style>
