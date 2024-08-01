@@ -1,1 +1,1 @@
-# MovieReview-Website
+This is an engaging movie review website that allows users to sign up and log in to share their thoughts on various films and rate the movies listed on the platform. Once you’ve submitted a review, you also have the flexibility to edit or delete it at any time, ensuring that your feedback remains accurate and up-to-date
